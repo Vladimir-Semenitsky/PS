@@ -1,0 +1,28 @@
+Get-NetConnectionProfile
+Set-NetConnectionProfile -interfaceindex X -NetworkCategory Private
+
+$pass=Read-Host -AsSecureString
+New-LocalUser -Name "admin" -FullName "admin" -Password $pass -PasswordNeverExpires 
+Add-LocalGroupMember -Group "администраторы" -Member "admin"
+Remove-LocalGroupMember -Group "администраторы" -Member "имя"
+
+
+New-LocalUser -Name "user5" -FullName "test" -PasswordNeverExpires -password $pass
+Add-LocalGroupMember -Group "пользователи" -Member "user"
+
+
+Set-LocalUser -Name user -FullName "Екатерина Подмогильная"
+Set-LocalUser -Name admin -PasswordNeverExpires
+
+foreach ($LocalGroup in Get-LocalGroup)
+{
+if (Get-LocalGroupMember $LocalGroup -Member 'Tazmin' –ErrorAction SilentlyContinue)
+{
+$LocalGroup.Name
+}
+}
+
+
+
+Get-WmiObject Win32_UserAccount -filter "LocalAccount=True AND Name='2'" | Foreach {$_.Disabled = $true;$_.put()}
+

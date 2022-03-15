@@ -1,0 +1,4 @@
+Add-AppxProvisionedPackage -Path c:\mount -PackagePath .\LanguageExperiencePack.ru-RU.Neutral.appx -LicensePath .\License.xml
+Add-AppxProvisionedPackage -Online -PackagePath .\LanguageExperiencePack.ru-RU.Neutral.appx `-LicensePath .\License.xml
+$p = (Get-AppxPackage | ? Name -Like *LanguageExperiencePackru-RU).InstallLocation
+Add-AppxPackage -Register -Path "$p\AppxManifest.xml" -DisableDevelopmentMode
