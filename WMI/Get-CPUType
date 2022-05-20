@@ -22,7 +22,7 @@ param (
 )
 PROCESS {
  Get-WmiObject -Class Win32_Processor -ComputerName $computername |                      
- Select DeviceID,
+ Select-object DeviceID,
  @{Name="Processor Type";
  Expression={$type["$($_.ProcessorType)"]}},
  Manufacturer, Name, Description,
